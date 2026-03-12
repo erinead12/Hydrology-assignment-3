@@ -51,6 +51,16 @@ Then at $x=L1=500$, $h(L1)=hL1=C_1*500+4$.
 
 Which gives for zone 1 : $h(x)=-0.0038x+4$
 
+##### Zone 2: 
+When $x=L1$ $h(L1)=hL1 = C1*500+C2 = 2.09$
+
+When $x=L$
+$h(L)=hL=C1*(1000)+C2 = 2$
+
+Which mean that : $1000*C1-500*C1=2-2.09$ , $C1=-0.00018$
+
+and $C2=2.09-1000*C1 = 2.18$
+
 
 
 
