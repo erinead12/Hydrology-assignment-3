@@ -1,0 +1,80 @@
+head_left=5.8 #m
+head_right=5.4 #m   
+lenght = 1500 #m
+thickness = 8 #m
+
+###########################################Q1
+#in readme
+###########################################Q2
+import numpy as np 
+import matplotlib.pyplot as plt
+# Aquifer dimensions 
+L = lenght        # length in x (m) 
+W =  100     # width in y (m) – you can pick any number 
+b =  thickness   # thickness in z (m) 
+zb = 0  # base elevation (m)  
+
+# Number of grid points in each direction, you can choose different numbers 
+n_x = 20 
+n_y = 20  
+n_z = 20 
+
+# Create 1D coordinate arrays 
+x = np.linspace(0, L, n_x) 
+y = np.linspace(0, W, n_y) 
+z = np.linspace(zb, zb + b, n_z) 
+
+# Generate 3D meshgrid 
+# Using indexing='ij' gives arrays with shape (n_x, n_y, n_z) 
+# This is convenient if you want to loop over x first, then y, then z. 
+xi, yi, zi = np.meshgrid(x, y, z, indexing='ij')
+
+head = head_left + (head_right - head_left) * (x/ L)
+
+#2D line plot : Head vs Distance 
+plt.figure()
+plt.plot(x, head)
+plt.xlabel("Distance")
+plt.ylabel("Head")
+plt.title("2D line plot, head vs distance")
+plt.show()
+
+head_3d = head_left + (head_right - head_left) * (xi / L)
+
+#Scatter plot with xi on the x-axis, zi on the y-axis, and color the points by the head values h
+
+plt.figure(figsize=(10, 6))
+sc = plt.scatter(
+    xi.ravel(),
+    zi.ravel(),
+    c=head_3d.ravel(),
+    s=3,                # small point size to avoid overplotting
+    cmap='turbo',
+    alpha=0.8           # transparency helps in dense areas
+)
+
+plt.xlabel('X(m)')
+plt.ylabel('Z(m)')
+plt.title('Scatter plot hydraulic head')
+plt.colorbar(sc).set_label('Hydraulic head [m]')
+
+plt.tight_layout()
+plt.show()
+
+############################################Q3
+K = 5e-4   # hydraulic conductivity (m/s)
+n = 0.33   # porosity
+
+# Hydraulic gradient (dh/dx) 
+dh_dx = (head_right - head_left) / L   # =C1
+
+# Specific discharge 
+qx = -K * dh_dx 
+
+# Groundwater velocity at every node
+vx = qx / n                    
+
+print(qx)
+print(vx)
+
+
