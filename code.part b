@@ -1,0 +1,18 @@
+#Data
+h0=4 #m (head at left boundary) 
+h𝐿=2 #m (head at right boundary) 
+L1=500 #m (length of zone 1) 
+L2=500 #m (length of zone 2) 
+K1=10 #m/d (hydraulic conductivity of zone 1) 
+K2=200 #m/d (hydraulic conductivity of zone 2) 
+L=L1+L2 #=1000 m 
+zb =0 #m (aquifer base elevation) 
+b=2 #m (aquifer thickness) 
+n1=0.25 #(porosity of zone 1) 
+n2=0.35 #(porosity of zone 2)
+
+########################################Q1
+hL1=(K1*L2*h0+K2*L1*hL)/(K1*L2+K2*L1)
+print(f"hL1 is {hL1}m")
+
+###########################################Q2
