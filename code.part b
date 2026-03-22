@@ -20,8 +20,25 @@ print(f"hL1 is {hL1}m")
 
 
 ###########################################Q3
+import numpy as np
+import matplotlib.pyplot as plt
+hL1 = ((K1*h0/L1) + (K2*hL/L2)) / ((K1/L1) + (K2/L2))
+x = np.linspace(0, L, 100)
+h_x = np.piecewise(x, [x <= L1, x > L1],
+                  [lambda x: h0 + (h_L1 - h0)/L1 * x, 
+                    lambda x: h_L1 + (hL - h_L1)/L2 * (x - L1)])
 
+plt.figure(figsize=(8, 5))
+plt.plot(x, h_x, 'b-', label='Hydraulic Head Profile')
+plt.axvline(x=L1, color='red', linestyle='--', label='Interface (L1)')
+plt.xlabel('Distance x (m)')
+plt.ylabel('Hydraulic Head (m)')
+plt.title('Question 3: Head Profile in Heterogeneous Aquifer')
+plt.legend()
+plt.grid(True, alpha=0.3)
+plt.show()
 
+print(f"The calculated interface head h_L1 is: {h_L1:.3f} m")
 
 ###########################################Q4
 
