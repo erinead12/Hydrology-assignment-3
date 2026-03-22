@@ -37,7 +37,7 @@ plt.title('Question 3: Head Profile in Heterogeneous Aquifer')
 plt.legend()
 plt.grid(True, alpha=0.3)
 plt.show()
-
+plt.savefig('groundwater_profile.png')
 print(f"The calculated interface head h_L1 is: {h_L1:.3f} m")
 
 ###########################################Q4
