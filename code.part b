@@ -22,24 +22,61 @@ print(f"hL1 is {hL1}m")
 ###########################################Q3
 import numpy as np
 import matplotlib.pyplot as plt
-hL1 = ((K1*h0/L1) + (K2*hL/L2)) / ((K1/L1) + (K2/L2))
+
+# Data
+h0, hL = 4.0, 2.0
+L1, L2 = 500.0, 500.0
+L = L1 + L2
+K1, K2 = 10.0, 200.0  # Original Case
+
+h_int = ((K1 * h0 / L1) + (K2 * hL / L2)) / ((K1 / L1) + (K2 / L2))
+
 x = np.linspace(0, L, 100)
 h_x = np.piecewise(x, [x <= L1, x > L1],
-                  [lambda x: h0 + (h_L1 - h0)/L1 * x, 
-                    lambda x: h_L1 + (hL - h_L1)/L2 * (x - L1)])
+                  [lambda x: h0 + (h_int - h0) / L1 * x, 
+                   lambda x: h_int + (hL - h_int) / L2 * (x - L1)])
 
 plt.figure(figsize=(8, 5))
-plt.plot(x, h_x, 'b-', label='Hydraulic Head Profile')
-plt.axvline(x=L1, color='red', linestyle='--', label='Interface (L1)')
+plt.plot(x, h_x, 'b-', label='Head Profile')
+plt.axvline(x=L1, color='red', linestyle='--', label='Interface')
+plt.xlabel('Distance x (m)'); plt.ylabel('Head (m)')
+plt.title('Question 3: Steady-State Head Profile'); plt.grid(True, alpha=0.3); plt.legend()
+plt.savefig('groundwater_profile.png')
+plt.show()
+print(f"Interface Head: {h_int:.3f} m")
+
+###########################################Q4 C)
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Constant Data
+h0, hL = 4.0, 2.0
+L1, L2 = 500.0, 500.0
+L = L1 + L2
+x = np.linspace(0, L, 100)
+
+def get_head_profile(K1, K2):
+    h_int = ((K1 * h0 / L1) + (K2 * hL / L2)) / ((K1 / L1) + (K2 / L2))
+    return np.piecewise(x, [x <= L1, x > L1],
+                       [lambda x: h0 + (h_int - h0) / L1 * x, 
+                        lambda x: h_int + (hL - h_int) / L2 * (x - L1)])
+
+# From Q4 a: Comparable (K1=10, K2=200)
+h_comparable = get_head_profile(10, 200)
+
+# Requirement: High Contrast (K1=1000, K2=10)
+h_contrast = get_head_profile(1000, 10)
+
+plt.figure(figsize=(8, 5))
+plt.plot(x, h_comparable, 'b--', label='Original (K1=10, K2=200)')
+plt.plot(x, h_contrast, 'r-', linewidth=2, label='Contrast (K1=1000, K2=10)')
+plt.axvline(x=L1, color='k', linestyle=':', label='Interface')
 plt.xlabel('Distance x (m)')
 plt.ylabel('Hydraulic Head (m)')
-plt.title('Question 3: Head Profile in Heterogeneous Aquifer')
+plt.title('Question 4: Comparison of Head Profiles')
 plt.legend()
 plt.grid(True, alpha=0.3)
+plt.savefig('q4_comparison.png')
 plt.show()
-plt.savefig('groundwater_profile.png')
-print(f"The calculated interface head h_L1 is: {h_L1:.3f} m")
-
-###########################################Q4
 
 
