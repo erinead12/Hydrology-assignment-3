@@ -69,13 +69,37 @@ and $C2=2.09-1000*C1 = 2.18$
 Drawdown Equations: $u=\frac{r^2S}{4Tt}$
 
 $s=\frac{Q}{4πT}\*W(u)$
+
 Solving:
-$u=\frac{1000^2\*4E-4}{4\*200*365}$
-$u=1.37E-3$
+$u=\frac{1000^2\*4E-4}{4\*200\*(365*3)}$
+
+$u=4.57E-4$
 
 Using a look-up table:
-$W(u)\approx6.10$
+$W(u)\approx7.11$
 
-$s=\frac{20}{4π\*200}*6.10$
+$s=\frac{20}{4π\*200}*7.11$
 
-$s=0.048$ m<sup>3</sup>/day
+Drawdown: $s=0.056$ m<sup>3</sup>/day
+
+### Q4
+Using the same equations as Q3:
+
+$u=\frac{750^2\*4E-4}{4\*200\*365}$
+
+$u=7.70E-4$
+
+Using a look-up table:
+$W(u)\approx6.59$
+
+$s=\frac{15}{4π\*200}*6.59$
+
+$s=0.039$
+
+The total drawdown can then be calculated by superposition:
+
+$s_t = s_1 + s_2$
+
+$s_t = 0.056 + 0.039$
+
+$s_t = 0.095$ m<sup>3</sup>/day
