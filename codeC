@@ -1,0 +1,30 @@
+#####Q1######
+Qc=9 #m^3/h
+import pandas as pd
+
+
+# Load data 
+data = pd.read_excel(r'C0121.xlsx', 'Drawdown Data') #Read the Drawdown Data sheet 
+bhdetails = pd.read_excel(r'C0121.xlsx', 'Borehole Coordinates') #Read the Borehole Coords sheet 
+
+
+# Setup subplots 
+n_boreholes = len(bhdetails) 
+fig, axs = plt.subplots(n_boreholes, 1, figsize=(8, 2 * n_boreholes), sharex=False) 
+if n_boreholes == 1: 
+    axs = [axs] # Ensure axes is iterable 
+
+# Plot each borehole's data 
+for i, ax in enumerate(axs): 
+    name = bhdetails['Name'][i] 
+    tstring = f'Time {name}' 
+    ddstring = f'Drawdown {name} (mbs)' 
+    rwl = bhdetails['Rest water level (m below surface, mbs)'][i] 
+    distance = bhdetails['Distance from pumping well [m]'][i] 
+    ax.plot(data[tstring], data[ddstring] - rwl) 
+    # ax.set_ylim(0, 3) # Optional: uniform y-axis if you want everything on same scale 
+    ax.set_xlabel('Time') 
+    ax.set_ylabel('Drawdown [m]') 
+    ax.set_title(f'Well: {name} | Distance from pumping well: {distance:.2f} m') 
+plt.tight_layout() 
+plt.show() 
