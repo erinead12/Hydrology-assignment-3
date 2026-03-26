@@ -127,3 +127,7 @@ We observe that as the distance from the pumping well increases, the drawdown de
 Similarly, as the vertical position increases, the drawdown increases. For example, the wells C0134-2-1 and C0134-2-2 are at the same distance from the pumping well, but the vertical position of the first one is about -2 m against -1 m for the second. The first one has a bigger drawdown. This phenomenon can mean that the aquifer is stratified.
 
 Most of the time, the drawdown value stabilizes before it decreases after a certain time with various recovery times when the pumping stops.
+
+### Q3 
+The Theis solution cannot be used for the pumping well itself since it is considering the distance from the well in the formula. 
+Also, as the Theis solution is made for confined aquifers, for wells with 1–3 m below ground, the wells are almost certainly sitting in the unsaturated zone or are unconfined aquifers, which makes the Theis solution unusable.
