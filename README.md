@@ -136,53 +136,97 @@ $s = \frac{2.3Q}{4\pi T} \log_{10}\left(\frac{2.25Tt}{r^2 S}\right)$
 
 This is why plotting $s$ versus $\log_{10}(t)$ gives a straight line. Which can be seen below:
 
-import numpy as np
-
-import matplotlib.pyplot as plt
-
-""Pumping test data"":
-
-t_min = np.array([1.67, 5, 10, 16.67, 50, 83.33, 133.33, 200.0])
-
-s_m = np.array([0.6, 1.2, 1.5, 1.7, 2.3, 2.5, 2.8, 3.0])
-
-logt = np.log10(t_min)
-
-""Linear fit: s = m*log10(t) + b"":
-
-m, b = np.polyfit(logt, s_m, 1)
-
-print("Slope m =", round(m, 3))
-
-print("Intercept b =", round(b, 3))
-
-""Semilog plot"":
-
-x_line = np.linspace(logt.min(), logt.max(), 200)
-
-s_line = m * x_line + b
-
-plt.figure(figsize=(8, 5))
-
-plt.scatter(logt, s_m, label="Observed data")
-
-plt.plot(x_line, s_line, label="Best-fit straight line")
-
-plt.xlabel(r"$\log_{10}(t\,[\mathrm{min}])$")
-
-plt.ylabel("Drawdown, s (m)")
-
-plt.title("Theis / Cooper-Jacob Semilog Plot")
-
-plt.grid(True)
-
-plt.legend()
-
-plt.show()
-
 Plot:
 <img width="830" height="555" alt="image" src="https://github.com/user-attachments/assets/5bce0236-71c5-4c5f-b5eb-f8db6c08cfa0" />
 
+From that straight line:
+
+The slope over one log cycle, $\Delta s$, gives $T$. The time-axis intercept $t_0$ gives $S$. With:
+
+$T = \frac{2.3Q}{4\pi \Delta s}$
+
+$S = \frac{2.25Tt_0}{r^2}$
+
+Using $t$ in minutes:
+
+| $t$ (min) | $\log_{10}(t)$ | $s$ (m) |
+|----------|----------------|--------|
+| 1.67     | 0.223          | 0.6    |
+| 5        | 0.699          | 1.2    |
+| 10       | 1.000          | 1.5    |
+| 16.67    | 1.222          | 1.7    |
+| 50       | 1.699          | 2.3    |
+| 83.33    | 1.921          | 2.5    |
+| 133.33   | 2.125          | 2.8    |
+| 200      | 2.301          | 3.0    |
+
+These points are close to a straight line on semilog paper.
+
+A fitted straight line is approximately:
+
+$s \approx 1.14 \log_{10}(t) + 0.356$
+
+This means that the drawdown increase over one log cycle is:
+
+$\Delta s \approx 1.14 \ m$
+
+We use:
+
+$T = \frac{2.3Q}{4\pi \Delta s}$
+
+Since time data are in minutes, convert pumping rate:
+
+$Q = 54 \ \text{m}^3/\text{hr} = 0.9 \ \text{m}^3/\text{min}$
+
+Now we can substitute:
+
+$T = \frac{2.3(0.9)}{4\pi (1.14)}$
+
+$T \approx 0.145 \ \text{m}^2/\text{min}$
+
+So:
+
+$T \approx 0.145 \ \text{m}^2/\text{min}$
+
+The straight-line equation is:
+
+$s = 1.14 \log_{10}(t) + 0.356$
+
+At the intercept $s = 0$:
+
+$0 = 1.14 \log_{10}(t_0) + 0.356$
+
+$\log_{10}(t_0) = -\frac{0.356}{1.14} \approx -0.312$
+
+$t_0 = 10^{-0.312} \approx 0.487 \ \text{min}$
+
+So:
+
+$t_0 \approx 0.49 \ \text{min}$
+
+We use:
+
+$S = \frac{2.25Tt_0}{r^2}$
+
+Use consistent units:
+
+- $T = 0.145 \ \text{m}^2/\text{min}$
+
+- $t_0 = 0.487 \ \text{min}$
+
+- $r = 20 \ \text{m}$
+
+With this data we can substitute:
+
+$S = \frac{2.25(0.145)(0.487)}{20^2}$
+
+$S \approx 3.96 \times 10^{-4}$
+
+Which gives us:
+
+$S \approx 4.0 \times 10^{-4}$
+
+$T \approx 0.145 \ \text{m}^2/\text{min}$
 
 ### Q3
 Drawdown Equations: $u=\frac{r^2S}{4Tt}$
