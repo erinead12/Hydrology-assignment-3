@@ -130,7 +130,7 @@ And the observation well distance from pumping well:
 
 $r = 20 \ \text{m}$
 
-Now we use Theis solution:
+Now we use the Theis solution:
 
 $s = \frac{2.3Q}{4\pi T} \log_{10}\left(\frac{2.25Tt}{r^2 S}\right)$
 
@@ -139,9 +139,7 @@ This is why plotting $s$ versus $\log_{10}(t)$ gives a straight line. Which can 
 Plot:
 <img width="830" height="555" alt="image" src="https://github.com/user-attachments/assets/5bce0236-71c5-4c5f-b5eb-f8db6c08cfa0" />
 
-From that straight line:
-
-The slope over one log cycle, $\Delta s$, gives $T$. The time-axis intercept $t_0$ gives $S$. With:
+From that straight line we can see that it slope over one log cycle, $\Delta s$, gives $T$. The time-axis intercept $t_0$ gives $S$. With:
 
 $T = \frac{2.3Q}{4\pi \Delta s}$
 
@@ -160,9 +158,7 @@ Using $t$ in minutes:
 | 133.33   | 2.125          | 2.8    |
 | 200      | 2.301          | 3.0    |
 
-These points are close to a straight line on semilog paper.
-
-A fitted straight line is approximately:
+These points are close to a straight line on semilog paper. A fitted straight line is approximately:
 
 $s \approx 1.14 \log_{10}(t) + 0.356$
 
@@ -170,11 +166,11 @@ This means that the drawdown increase over one log cycle is:
 
 $\Delta s \approx 1.14 \ m$
 
-We use:
+We therefore use:
 
 $T = \frac{2.3Q}{4\pi \Delta s}$
 
-Since time data are in minutes, convert pumping rate:
+Since time data are in minutes, we convert pumping rate:
 
 $Q = 54 \ \text{m}^3/\text{hr} = 0.9 \ \text{m}^3/\text{min}$
 
@@ -184,7 +180,7 @@ $T = \frac{2.3(0.9)}{4\pi (1.14)}$
 
 $T \approx 0.145 \ \text{m}^2/\text{min}$
 
-The straight-line equation is:
+With the straight-line equation being:
 
 $s = 1.14 \log_{10}(t) + 0.356$
 
