@@ -137,32 +137,47 @@ $s = \frac{2.3Q}{4\pi T} \log_{10}\left(\frac{2.25Tt}{r^2 S}\right)$
 This is why plotting $s$ versus $\log_{10}(t)$ gives a straight line. Which can be seen below:
 
 import numpy as np
+
 import matplotlib.pyplot as plt
 
 ""Pumping test data"":
+
 t_min = np.array([1.67, 5, 10, 16.67, 50, 83.33, 133.33, 200.0])
+
 s_m = np.array([0.6, 1.2, 1.5, 1.7, 2.3, 2.5, 2.8, 3.0])
 
 logt = np.log10(t_min)
 
 ""Linear fit: s = m*log10(t) + b"":
+
 m, b = np.polyfit(logt, s_m, 1)
 
 print("Slope m =", round(m, 3))
+
 print("Intercept b =", round(b, 3))
 
 ""Semilog plot"":
+
 x_line = np.linspace(logt.min(), logt.max(), 200)
+
 s_line = m * x_line + b
 
 plt.figure(figsize=(8, 5))
+
 plt.scatter(logt, s_m, label="Observed data")
+
 plt.plot(x_line, s_line, label="Best-fit straight line")
+
 plt.xlabel(r"$\log_{10}(t\,[\mathrm{min}])$")
+
 plt.ylabel("Drawdown, s (m)")
+
 plt.title("Theis / Cooper-Jacob Semilog Plot")
+
 plt.grid(True)
+
 plt.legend()
+
 plt.show()
 
 Plot:
