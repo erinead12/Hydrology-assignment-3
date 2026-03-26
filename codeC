@@ -35,3 +35,41 @@ plt.show()
 
 
 ###### Q2 ######
+from scipy.special import exp1
+
+def theis_solution(times, r, Q, T, S):
+    u = (S * r**2) / (4 * T * times)
+    drawdown = (Q / (4 * np.pi * T)) * exp1(u)
+    return drawdown
+
+T_c=0.001 #m^2/s
+S_c=5e-5
+Q_c=9/3600 #m^3/s
+
+fig, axs = plt.subplots(n_boreholes, 1, figsize=(8, 2 * n_boreholes), sharex=False) 
+if n_boreholes == 1: 
+    axs = [axs] # Ensure axes is iterable 
+
+# Plot each borehole's data 
+for i, ax in enumerate(axs): 
+    name = bhdetails['Name'][i] 
+    tstring = f'Time {name}' 
+    distance = bhdetails['Distance from pumping well [m]'][i] 
+
+    screen_top = bhdetails['Screen Top [m]'][i]
+    screen_bot = bhdetails['Screen Bottom [m]'][i]
+    difference = screen_top - screen_bot
+
+    times_raw = data[tstring]
+    times = times = (times_raw - times_raw.iloc[0]).dt.total_seconds().values 
+    theis=theis_solution(times=times, r =  distance, Q=Q_c, T=T_c, S=S_c)
+
+    ax.plot(times, theis) 
+    ax.set_xlabel('Time') 
+    ax.set_ylabel('Drawdown (Theis) [m]') 
+    ax.set_title(f'Well: {name} | Screen: {difference} m bgs | Distance from pumping well: {distance:.2f} m')
+
+plt.tight_layout() 
+plt.show() 
+ 
+##### Q3#######
