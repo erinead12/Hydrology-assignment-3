@@ -23,7 +23,8 @@ for i, ax in enumerate(axs):
 
     screen_top = bhdetails['Screen Top [m]'][i]
     screen_bot = bhdetails['Screen Bottom [m]'][i]
-    difference = screen_top - screen_bot
+    difference = screen_bot - screen_top
+
 
     ax.plot(data[tstring], data[ddstring] - rwl) 
     # ax.set_ylim(0, 3) # Optional: uniform y-axis if you want everything on same scale 
@@ -58,7 +59,8 @@ for i, ax in enumerate(axs):
 
     screen_top = bhdetails['Screen Top [m]'][i]
     screen_bot = bhdetails['Screen Bottom [m]'][i]
-    difference = screen_top - screen_bot
+    difference = screen_bot - screen_top
+
 
     times_raw = data[tstring]
     times = times = (times_raw - times_raw.iloc[0]).dt.total_seconds().values 
