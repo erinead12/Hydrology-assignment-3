@@ -73,8 +73,12 @@ The specific discharge must be identical ($q_1 = q_2$) due to the Principle of C
 ## Part B
 ### Q1
 For steady-state one-dimensional flow in a confined aquifer with no sources or sinks, the governing equation is:
+
 $\frac{d}{dx}\left(T \frac{dh}{dx}\right) = 0$
 
+Assuming constant transmissivity $T$, this simplifies to:
+
+$\frac{d^2 h}{dx^2} = 0$
 
 ### Q2
 ### Q3
