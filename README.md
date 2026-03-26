@@ -119,3 +119,11 @@ $s_t = s_1 + s_2$
 $s_t = 0.056 + 0.039$
 
 $s_t = 0.095$ m<sup>3</sup>/day
+
+
+# Part C 
+### Q1 
+We observe that as the distance from the pumping well increases, the drawdown decrease. 
+Similarly, as the vertical position increases, the drawdown increases. For example, the wells C0134-2-1 and C0134-2-2 are at the same distance from the pumping well, but the vertical position of the first one is about -2 m against -1 m for the second. The first one has a bigger drawdown. This phenomenon can mean that the aquifer is stratified.
+
+Most of the time, the drawdown value stabilizes before it decreases after a certain time with various recovery times when the pumping stops.
