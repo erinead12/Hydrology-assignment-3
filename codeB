@@ -37,5 +37,104 @@ in read me
 
 
 #####5######
+from scipy.special import exp1
 
+T  = 0.145/60 #[m²/s]
+S  = 3.960e-4 # [-]  
+
+t1 = 4*365*24*3600 # Well 1 pumping duration[s]
+t2 = 1*365*24*3600   # Well 2 pumping duration  [s]
+
+Q1 = 20 / 3600      # [m³/s]
+Q2 = 15 / 3600      # [m³/s]
+
+# Domain boundaries 
+x_min, x_max = 0, 2400 
+y_min, y_max = -500, 500 
+n_x, n_y = 1000, 1000 
+
+# Create 1D coordinate arrays 
+x = np.linspace(x_min, x_max, n_x) 
+y = np.linspace(y_min, y_max, n_y) 
+
+# Create 2D meshgrid  
+xi, yi = np.meshgrid(x, y) 
+
+x_w1, y_w1 = 800,   0
+x_w2, y_w2 = 1600,  0
+x_obs, y_obs = 1200, 0
+
+H0 = 32 + (25.5 - 32) / 2400 * xi
+r1 = np.sqrt((xi - x_w1)**2 + (yi - y_w1)**2)
+r2 = np.sqrt((xi - x_w2)**2 + (yi - y_w2)**2)
+
+
+def theis_solution(times, r, Q, T, S):
+    u = (S * r**2) / (4 * T * times)
+    drawdown = (Q / (4 * np.pi * T)) * exp1(u)
+    return drawdown
+
+# Drawdown from each well
+s1 = theis_solution(t1, r1, Q1, T, S)
+s2 = theis_solution(t2, r2, Q2, T, S)
+
+H = H0 - s1 - s2
+#B    -> Claude.ia has been use to get the best plot for the contour plot here
+
+fig, ax = plt.subplots(figsize=(12, 5))
+levels = np.linspace(np.floor(H.min()), np.ceil(H.max()), 30)
+cf = ax.contourf(xi, yi, H, levels=levels, cmap='Blues_r')
+cl = ax.contour( xi, yi, H, levels=levels[::3], colors='k',
+                 linewidths=0.5, alpha=0.6)
+ax.clabel(cl, fmt='%.1f m', fontsize=7)
+cbar = fig.colorbar(cf, ax=ax, label='Hydraulic head [m]')
+
+# Mark wells and observation point
+ax.plot(x_w1, y_w1, 'rv', ms=10, label=f'Well 1 (Q={Q1*3600:.0f} m³/h)')
+ax.plot(x_w2, y_w2, 'r^', ms=10, label=f'Well 2 (Q={Q2*3600:.0f} m³/h)')
+ax.plot(x_obs, y_obs, 'gs', ms=8,  label='Observation well')
+
+ax.set_xlabel('x [m]')
+ax.set_ylabel('y [m]')
+ax.set_title('Hydraulic head distribution h(x, y) after 4 years of pumping')
+ax.legend(loc='upper right')
+ax.set_aspect('equal')
+plt.tight_layout()
+plt.show()
+#C
+
+b = 15          
+K = T / b       
+
+
+grad_y, grad_x = np.gradient(H, y, x)
+
+qx = -K * grad_x    
+qy = -K * grad_y    
+
+fig, ax = plt.subplots(figsize=(12, 5))
+levels = np.linspace(np.floor(H.min()), np.ceil(H.max()), 30)
+cf = ax.contourf(xi, yi, H, levels=levels, cmap='Blues_r')
+cl = ax.contour( xi, yi, H, levels=levels[::3], colors='k',
+                 linewidths=0.5, alpha=0.6)
+ax.clabel(cl, fmt='%.1f m', fontsize=7)
+fig.colorbar(cf, ax=ax, label='Hydraulic head [m]')
+
+ax.streamplot(x, y, qx.T, qy.T,
+              color='white',
+              linewidth=0.8,
+              density=1.5,
+              arrowsize=1.2)
+
+ax.plot(x_w1, y_w1, 'rv', ms=10, label=f'Well 1 (Q={Q1*3600:.0f} m³/h)')
+ax.plot(x_w2, y_w2, 'r^', ms=10, label=f'Well 2 (Q={Q2*3600:.0f} m³/h)')
+ax.plot(x_obs, y_obs, 'gs', ms=8,  label='Observation well')
+
+ax.set_xlabel('x [m]')
+ax.set_ylabel('y [m]')
+ax.set_title('Hydraulic head & flow streamlines after 4 years')
+ax.legend(loc='upper right')
+ax.set_aspect('equal')
+plt.tight_layout()
+plt.show()
 #######6######
