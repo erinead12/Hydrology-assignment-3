@@ -184,10 +184,6 @@ $T = \frac{2.3(0.9)}{4\pi (1.14)}$
 
 $T \approx 0.145 \ \text{m}^2/\text{min}$
 
-So:
-
-$T \approx 0.145 \ \text{m}^2/\text{min}$
-
 The straight-line equation is:
 
 $s = 1.14 \log_{10}(t) + 0.356$
