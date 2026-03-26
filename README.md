@@ -80,6 +80,46 @@ Assuming constant transmissivity $T$, this simplifies to:
 
 $\frac{d^2 h}{dx^2} = 0$
 
+From here we integrating twice which gives us:
+
+$\frac{dh}{dx} = C_1$
+
+$h(x) = C_1 x + C_2$
+
+Now we can apply the boundary conditions:
+
+We know that at the left river $x = 0$:
+
+$h(0) = 32.0$
+
+And for the right river we have $x = 2400$:
+
+$h(2400) = 25.5$
+
+By substitute the first condition we get:
+
+$h(0) = C_1(0) +C_2 = 32.0$
+
+And:
+
+$C_2 = 32.0$
+
+Now we can use the second condition which gives us:
+
+$h(2400) = C_1(2400) + 32.0 = 25.5$
+
+$2400C_1 = 25.5 - 32.0 = -6.5$
+
+$C_1 = \frac{-6.5}{2400} = -0.00270833$
+
+Therefore, the hydraulic head distribution is:
+
+$h(x) = 32.0 - 0.00270833\,x$
+
+Or as:
+
+$h(x) = 32.0 + \frac{25.5 - 32.0}{2400}\,x$
+
 ### Q2
 ### Q3
 Drawdown Equations: $u=\frac{r^2S}{4Tt}$
