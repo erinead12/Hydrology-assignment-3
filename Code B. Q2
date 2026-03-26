@@ -1,5 +1,4 @@
-### Plot code
-### Storativity
+## Plot code
 
 import numpy as np
 
@@ -44,3 +43,50 @@ plt.grid(True)
 plt.legend()
 
 plt.show()
+
+## Transmissivity
+
+Q_m3_per_min = 54 / 60
+
+delta_s = m
+
+T_m2_per_min = (2.3 * Q_m3_per_min) / (4 * np.pi * delta_s)
+
+T_m2_per_hr = T_m2_per_min * 60
+
+T_m2_per_day = T_m2_per_hr * 24
+
+
+print("T =", round(T_m2_per_min, 3), "m^2/min")
+
+print("T =", round(T_m2_per_hr, 2), "m^2/hr")
+
+print("T =", round(T_m2_per_day, 1), "m^2/day")
+
+Gives:
+
+$T = 0.145 m^2/min$
+
+$T = 8.67 m^2/hr$
+
+$T = 208.1 m^2/day$
+
+## Storativity
+
+r = 20.0  # m
+
+log10_t0 = -b / m
+
+t0_min = 10 ** log10_t0
+
+S = (2.25 * T_m2_per_min * t0_min) / (r ** 2)
+
+print("t0 =", round(t0_min, 3), "min")
+
+print("S =", "{:.3e}".format(S))
+
+Gives:
+
+$t0 = 0.487 min$
+
+$S = 3.960e-04$
