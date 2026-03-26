@@ -1,5 +1,4 @@
 #####Q1######
-Qc=9 #m^3/h
 import pandas as pd
 
 
@@ -21,10 +20,18 @@ for i, ax in enumerate(axs):
     ddstring = f'Drawdown {name} (mbs)' 
     rwl = bhdetails['Rest water level (m below surface, mbs)'][i] 
     distance = bhdetails['Distance from pumping well [m]'][i] 
+
+    screen_top = bhdetails['Screen Top [m]'][i]
+    screen_bot = bhdetails['Screen Bottom [m]'][i]
+    difference = screen_top - screen_bot
+
     ax.plot(data[tstring], data[ddstring] - rwl) 
     # ax.set_ylim(0, 3) # Optional: uniform y-axis if you want everything on same scale 
     ax.set_xlabel('Time') 
     ax.set_ylabel('Drawdown [m]') 
-    ax.set_title(f'Well: {name} | Distance from pumping well: {distance:.2f} m') 
+    ax.set_title(f'Well: {name} | Screen: {difference} m bgs | Distance from pumping well: {distance:.2f} m') 
 plt.tight_layout() 
 plt.show() 
+
+
+###### Q2 ######
