@@ -137,4 +137,41 @@ ax.legend(loc='upper right')
 ax.set_aspect('equal')
 plt.tight_layout()
 plt.show()
+
 #######6######
+
+# Critical point
+x_c, y_c = 0, 0
+
+t5yr = 5 * 365 * 24 * 3600   
+t1yr = 1 * 365 * 24 * 3600   
+
+Q1 = 15 / 3600   
+
+H0_critical = 32 + (25.5 - 32) / 2400 * x_c 
+r1 = np.sqrt((x_c - x_w1)**2 + (y_c - y_w1)**2)   # = 800 m
+r2 = np.sqrt((x_c - x_w2)**2 + (y_c - y_w2)**2)   # = 1600 m
+
+s1 = theis_solution(t5yr, r1, Q1, T, S)
+print(f"\nDrawdown from Well 1 at river: s1 = {s1} m")
+
+# => s2 <= H0 - 30.0 - s1
+h_min      = 30.0
+s2_max     = H0_critical - h_min - s1
+
+print(f"Maximum allowable drawdown from Well 2: s2_max = {s2_max} m")
+# s2 = Q2 / (4πT) * W(u2) 
+# s2 = (Q2 / 4πT) * W(u2)  =>  Q2 = s2 * 4πT / W(u2)
+
+u2   = (S * r2**2) / (4 * T * t1yr)
+Wu2  = exp1(u2)    # Well function W(u)
+
+Q2_max     = s2_max * (4 * np.pi * T) / Wu2
+Q2_max_hr  = Q2_max * 3600   # convert to m³/hour
+
+print(f"\nu2  = {u2:.6f}")
+print(f"W(u2) = {Wu2:.6f}")
+print(f"\nMaximum Q2 = {Q2_max:.6f} m³/s")
+print(f"Maximum Q2 = {Q2_max_hr:.2f} m³/hour")
+
+
