@@ -275,6 +275,7 @@ Also, as the Theis solution is made for confined aquifers, for wells with 1–3 
 Based on the curve-fitting of the Theis analytical solution to the observed drawdown data at well C0121-2-1, the best estimates for the aquifer properties are:
 - Transmissivity (T): 6.28e-04 m²/s (approximately $6.3 \times 10^{-4}$ m²/s)
 - Storativity (S): 1.15e-03
+
 These values are highly characteristic of the Copenhagen Limestone aquifer. A transmissivity in the $10^{-4}$ range indicates a moderately productive fractured limestone aquifer. The storativity value of roughly 0.001 confirms that the aquifer is under confined or semi-confined conditions, as unconfined aquifers typically have much higher storativity (specific yield) values (closer to 0.1 to 0.3).
 <img width="762" height="583" alt="image" src="https://github.com/user-attachments/assets/51d617be-0fbc-47e9-abd1-c0e1c52cd952" />
 
