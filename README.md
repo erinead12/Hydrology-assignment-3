@@ -276,6 +276,8 @@ Based on the curve-fitting of the Theis analytical solution to the observed draw
 - Transmissivity (T): 6.28e-04 m²/s (approximately $6.3 \times 10^{-4}$ m²/s)
 - Storativity (S): 1.15e-03
 These values are highly characteristic of the Copenhagen Limestone aquifer. A transmissivity in the $10^{-4}$ range indicates a moderately productive fractured limestone aquifer. The storativity value of roughly 0.001 confirms that the aquifer is under confined or semi-confined conditions, as unconfined aquifers typically have much higher storativity (specific yield) values (closer to 0.1 to 0.3).
+<img width="762" height="583" alt="image" src="https://github.com/user-attachments/assets/51d617be-0fbc-47e9-abd1-c0e1c52cd952" />
+
 
 ### Q5
 The Theis solution provides a reasonable baseline fit for the early stages of pumping, however, it assumes a perfectly homogeneous, isotropic, fully confined aquifer with no recharge. Real-world data from the Copenhagen Metro site typically deviates from this ideal curve at later times.
