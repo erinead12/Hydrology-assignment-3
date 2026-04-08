@@ -84,11 +84,11 @@ import matplotlib.pyplot as plt
 from scipy.special import exp1
 from scipy.optimize import curve_fit
 
-# 1. Load Data
+Load Data
 import os
 from pathlib import Path
 
-# Find the C0121 file dynamically
+Find the C0121 file dynamically
 data_dir = r'C:\Users\Spanish guys\Documents\Lucia\Uni\Exchange\2\Subjects\12320 - Hydrology\Assignment 3C'
 c0121_files = list(Path(data_dir).glob('*C0121*'))
 if not c0121_files:
@@ -103,7 +103,7 @@ details_df = pd.read_excel(file_path, sheet_name='Borehole Details')
 print(drawdown_df.head())
 print("Files loaded successfully!")
 
-# 2. Define Theis Solution
+Define Theis Solution
 def theis_solution(t, r, Q, T, S):
     """
     s = (Q / (4 * pi * T)) * W(u)
@@ -112,28 +112,28 @@ def theis_solution(t, r, Q, T, S):
     u = (r**2 * S) / (4 * T * t)
     return (Q / (4 * np.pi * T)) * exp1(u)
 
-# 3. Parameters from Assignment Text
+Parameters from Assignment Text
 Q_m3h = 9.0  # Average pumping rate 
 Q = Q_m3h / 3600  # Convert to m3/s
 t_start = pd.to_datetime('2009-06-18 07:01:00')
 t_end = pd.to_datetime('2009-06-20 07:01:00')
 
-# 4. Q4: Fit Theis Solution to Usable Wells
+Fit Theis Solution to Usable Wells
 # Example fitting for C0121-2-1 (closest observation well)
 well_name = 'C0121-2-1'
 r = 1.5258  # Distance in meters 
 
-# Prepare time series (seconds since start)
+Prepare time series (seconds since start)
 drawdown_df['Time'] = pd.to_datetime(drawdown_df[f'Time {well_name}'])
 pumping_data = drawdown_df[(drawdown_df['Time'] >= t_start) & (drawdown_df['Time'] <= t_end)].copy()
 pumping_data['t_sec'] = (pumping_data['Time'] - t_start).dt.total_seconds()
 pumping_data['s_obs'] = pumping_data[f'Drawdown {well_name} (mbs)'] - pumping_data[f'Drawdown {well_name} (mbs)'].iloc[0]
 
-# Initial Guesses (from Q2 hint) 
+Initial Guesses (from Q2 hint) 
 T_guess = 0.001 
 S_guess = 5e-5
 
-# Perform fitting
+Perform fitting
 def fit_func(t, T, S):
     return theis_solution(t, r, Q, T, S)
 
@@ -142,7 +142,7 @@ T_best, S_best = popt
 
 print(f"Best fit for {well_name}: T = {T_best:.2e} m2/s, S = {S_best:.2e}")
 
-# 5. Visualization for Q5
+##### Visualisation for Q5 #####
 plt.figure(figsize=(10, 6))
 plt.semilogx(pumping_data['t_sec'], pumping_data['s_obs'], 'k.', label='Observed Data')
 plt.semilogx(pumping_data['t_sec'], fit_func(pumping_data['t_sec'], *popt), 'r-', label='Theis Fit')
