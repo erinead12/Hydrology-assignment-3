@@ -270,3 +270,16 @@ Most of the time, the drawdown value stabilizes before it decreases after a cert
 ### Q3 
 The Theis solution cannot be used for the pumping well itself since it is considering the distance from the well in the formula. 
 Also, as the Theis solution is made for confined aquifers, for wells with 1–3 m below ground, the wells are almost certainly sitting in the unsaturated zone or are unconfined aquifers, which makes the Theis solution unusable.
+
+### Q4
+Based on the curve-fitting of the Theis analytical solution to the observed drawdown data at well C0121-2-1, the best estimates for the aquifer properties are:
+- Transmissivity (T): 6.28e-04 m²/s (approximately $6.3 \times 10^{-4}$ m²/s)
+- Storativity (S): 1.15e-03
+These values are highly characteristic of the Copenhagen Limestone aquifer. A transmissivity in the $10^{-4}$ range indicates a moderately productive fractured limestone aquifer. The storativity value of roughly 0.001 confirms that the aquifer is under confined or semi-confined conditions, as unconfined aquifers typically have much higher storativity (specific yield) values (closer to 0.1 to 0.3).
+
+### Q5
+The Theis solution provides a reasonable baseline fit for the early stages of pumping, however, it assumes a perfectly homogeneous, isotropic, fully confined aquifer with no recharge. Real-world data from the Copenhagen Metro site typically deviates from this ideal curve at later times.
+Based on the site's geology and hydrogeological principles, the deviations which means where the black observation dots separate from the red Theis line, can be attributed to the following factors:
+- Double-Porosity (Fractured Flow): The Copenhagen Limestone is a dual-porosity medium. When pumping starts, water is rapidly depleted from the high-permeability fractures (creating early steep drawdown). Later, water slowly drains from the low-permeability rock matrix into the fractures. This transition causes the actual drawdown curve to temporarily flatten or form an "inflection point" that a standard Theis curve cannot capture.
+- Leaky Aquifer Conditions: The limestone aquifer is overlain by glacial units (such as clay till and sand). As pumping continues and the pressure drops in the limestone, water from these overlying aquitards begins to leak downward into the primary aquifer. This extra source of water causes the observed drawdown to flatten out at late times compared to the continuous drop predicted by the Theis model.
+- Boundary Effects: If the drawdown cone extends far enough to intersect a constant-head boundary such as the nearby Copenhagen harbour or a fully penetrating river, the drawdown will stabilise completely. Conversely, if it hits an impermeable barrier such as a geological fault, the drawdown would steepen abruptly.
