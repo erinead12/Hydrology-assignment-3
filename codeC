@@ -75,3 +75,80 @@ plt.tight_layout()
 plt.show() 
  
 ##### Q3#######
+
+
+##### Q4 #####
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from scipy.special import exp1
+from scipy.optimize import curve_fit
+
+# 1. Load Data
+import os
+from pathlib import Path
+
+# Find the C0121 file dynamically
+data_dir = r'C:\Users\Spanish guys\Documents\Lucia\Uni\Exchange\2\Subjects\12320 - Hydrology\Assignment 3C'
+c0121_files = list(Path(data_dir).glob('*C0121*'))
+if not c0121_files:
+    raise FileNotFoundError(f"No C0121 file found in {data_dir}")
+
+file_path = str(c0121_files[0])
+print(f"Found file: {file_path}")
+
+drawdown_df = pd.read_excel(file_path, sheet_name='Drawdown Data')
+coords_df = pd.read_excel(file_path, sheet_name='Borehole Coordinates')
+details_df = pd.read_excel(file_path, sheet_name='Borehole Details')
+print(drawdown_df.head())
+print("Files loaded successfully!")
+
+# 2. Define Theis Solution
+def theis_solution(t, r, Q, T, S):
+    """
+    s = (Q / (4 * pi * T)) * W(u)
+    u = (r**2 * S) / (4 * T * t)
+    """
+    u = (r**2 * S) / (4 * T * t)
+    return (Q / (4 * np.pi * T)) * exp1(u)
+
+# 3. Parameters from Assignment Text
+Q_m3h = 9.0  # Average pumping rate 
+Q = Q_m3h / 3600  # Convert to m3/s
+t_start = pd.to_datetime('2009-06-18 07:01:00')
+t_end = pd.to_datetime('2009-06-20 07:01:00')
+
+# 4. Q4: Fit Theis Solution to Usable Wells
+# Example fitting for C0121-2-1 (closest observation well)
+well_name = 'C0121-2-1'
+r = 1.5258  # Distance in meters 
+
+# Prepare time series (seconds since start)
+drawdown_df['Time'] = pd.to_datetime(drawdown_df[f'Time {well_name}'])
+pumping_data = drawdown_df[(drawdown_df['Time'] >= t_start) & (drawdown_df['Time'] <= t_end)].copy()
+pumping_data['t_sec'] = (pumping_data['Time'] - t_start).dt.total_seconds()
+pumping_data['s_obs'] = pumping_data[f'Drawdown {well_name} (mbs)'] - pumping_data[f'Drawdown {well_name} (mbs)'].iloc[0]
+
+# Initial Guesses (from Q2 hint) 
+T_guess = 0.001 
+S_guess = 5e-5
+
+# Perform fitting
+def fit_func(t, T, S):
+    return theis_solution(t, r, Q, T, S)
+
+popt, pcov = curve_fit(fit_func, pumping_data['t_sec'], pumping_data['s_obs'], p0=[T_guess, S_guess])
+T_best, S_best = popt
+
+print(f"Best fit for {well_name}: T = {T_best:.2e} m2/s, S = {S_best:.2e}")
+
+# 5. Visualization for Q5
+plt.figure(figsize=(10, 6))
+plt.semilogx(pumping_data['t_sec'], pumping_data['s_obs'], 'k.', label='Observed Data')
+plt.semilogx(pumping_data['t_sec'], fit_func(pumping_data['t_sec'], *popt), 'r-', label='Theis Fit')
+plt.xlabel('Time since pumping started [s]')
+plt.ylabel('Drawdown [m]')
+plt.title(f'Theis Curve Fit for {well_name}')
+plt.legend()
+plt.grid(True, which="both", ls="-")
+plt.show()
