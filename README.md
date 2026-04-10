@@ -286,3 +286,18 @@ Based on the site's geology and hydrogeological principles, the deviations which
 - Double-Porosity (Fractured Flow): The Copenhagen Limestone is a dual-porosity medium. When pumping starts, water is rapidly depleted from the high-permeability fractures (creating early steep drawdown). Later, water slowly drains from the low-permeability rock matrix into the fractures. This transition causes the actual drawdown curve to temporarily flatten or form an "inflection point" that a standard Theis curve cannot capture.
 - Leaky Aquifer Conditions: The limestone aquifer is overlain by glacial units (such as clay till and sand). As pumping continues and the pressure drops in the limestone, water from these overlying aquitards begins to leak downward into the primary aquifer. This extra source of water causes the observed drawdown to flatten out at late times compared to the continuous drop predicted by the Theis model.
 - Boundary Effects: If the drawdown cone extends far enough to intersect a constant-head boundary such as the nearby Copenhagen harbour or a fully penetrating river, the drawdown will stabilise completely. Conversely, if it hits an impermeable barrier such as a geological fault, the drawdown would steepen abruptly.
+
+### Q6
+Drawdown Equations: $u=\frac{r^2S}{4Tt}$
+
+$s=\frac{Q}{4πT}\*W(u)$
+
+Solving: $u=\frac{5^2\*5E-5}{4\*0.001\*1}$
+
+$u=0.3125$
+
+$W(0.3125)=0.90$
+
+$8=\frac{Q}{4π\*0.001}\*0.90$
+
+$Q=0.112$ m<sup>3</sup>/day
