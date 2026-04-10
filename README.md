@@ -303,3 +303,23 @@ $8=\frac{Q}{4π\*0.001}\*11.95$
 $Q=0.0084$ m<sup>3</sup>/sec
 
 Each Day: $Q=726.85$ m<sup>3</sup>/day
+
+
+### Q9
+Similarly to Q6:
+
+Drawdown Equations: $u=\frac{r^2S}{4Tt}$
+
+$s=\frac{Q}{4πT}\*W(u)$
+
+Solving: $u=\frac{50^2\*5E-5}{4\*0.001\*86400}$
+
+$u=3.6E-4$
+
+$W(3.6E-4)=7.35$
+
+$s=\frac{0.0084}{4π\*0.001}\*7.35$
+
+$s=4.91$ m
+
+To minimize the drawdown below the buildings, more wells with slower pumping rates could be added. This would help to flatten the cone of depression and lessen the drawdown where necessary.
