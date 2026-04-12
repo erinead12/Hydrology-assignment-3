@@ -152,3 +152,44 @@ plt.title(f'Theis Curve Fit for {well_name}')
 plt.legend()
 plt.grid(True, which="both", ls="-")
 plt.show()
+
+
+##### Q7 #####
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.special import exp1   # Theis well function W(u) = E1(u)
+
+#Given parameters
+Q = 0.0084        # m^3/s, from Q6
+T = 0.001         # m^2/s
+S = 5e-5          # storativity
+t = 86400         # s (1 day)
+
+#Grid for contour plot
+x = np.linspace(-5, 5, 200)
+y = np.linspace(-5, 5, 200)
+xi, yi = np.meshgrid(x, y)
+
+#Radial distance from pumping well at (0,0)
+r = np.sqrt(xi**2 + yi**2)
+
+#If r = 0 exactly then what happens is that u = 0 gives us a singularity. Therefore we avoid r = 0.
+r[r == 0] = 1e-6
+
+#Theis parameter
+u = (r**2 * S) / (4 * T * t)
+
+#Drawdown
+dd = (Q / (4 * np.pi * T)) * exp1(u)
+
+#Plot
+fig, ax = plt.subplots(figsize=(7, 6))
+cs = ax.contourf(xi, yi, dd, levels=20, cmap='turbo')
+ax.set_title('1-well Drawdown')
+ax.set_xlabel('X [m]')
+ax.set_ylabel('Y [m]')
+ax.set_aspect('equal')
+ax.grid(True)
+fig.colorbar(cs, ax=ax, label='Drawdown [m]')
+plt.tight_layout()
+plt.show()
