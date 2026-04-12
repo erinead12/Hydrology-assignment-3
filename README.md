@@ -310,6 +310,82 @@ $Q=0.0084$ m<sup>3</sup>/sec
 
 Each Day: $Q=726.85$ m<sup>3</sup>/day
 
+###Q7
+
+import numpy as np
+
+import matplotlib.pyplot as plt
+
+from scipy.special import exp1
+
+"Given parameters"
+
+"Q: m^3/s, from Q6, T: m^2/s, S: Storativity, t: s (1 day)"
+
+Q = 0.0084
+
+T = 0.001
+
+S = 5e-5
+
+t = 86400
+
+"Grid for contour plot"
+
+x = np.linspace(-5, 5, 200)
+
+y = np.linspace(-5, 5, 200)
+
+xi, yi = np.meshgrid(x, y)
+
+
+"Radial distance from pumping well at (0,0)"
+
+r = np.sqrt(xi**2 + yi**2)
+
+
+"Avoid r = 0 exactly, because u = 0 gives a singularity"
+
+r[r == 0] = 1e-6
+
+
+"Theis parameter"
+
+u = (r**2 * S) / (4 * T * t)
+
+
+"Drawdown"
+
+dd = (Q / (4 * np.pi * T)) * exp1(u)
+
+
+"Plot"
+
+fig, ax = plt.subplots(figsize=(7, 6))
+
+cs = ax.contourf(xi, yi, dd, levels=20, cmap='turbo')
+
+ax.set_title('1-well Drawdown')
+
+ax.set_xlabel('X [m]')
+
+ax.set_ylabel('Y [m]')
+
+ax.set_aspect('equal')
+
+ax.grid(True)
+
+fig.colorbar(cs, ax=ax, label='Drawdown [m]')
+
+plt.tight_layout()
+
+plt.show()
+
+<img width="810" height="684" alt="image" src="https://github.com/user-attachments/assets/b2a9ff89-ced0-429a-a498-f9a7192c63e4" />
+
+###Q8
+
+
 
 ### Q9
 Similarly to Q6:
