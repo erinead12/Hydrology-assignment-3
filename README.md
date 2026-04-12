@@ -470,7 +470,7 @@ $$
 Q_w \approx 0.0021 \ \text{m}^3/\text{s}
 $$
 
-or
+Or
 
 $$
 181.7 \ \text{m}^3/\text{day per well}
@@ -482,11 +482,13 @@ $$
 0.0084 \ \text{m}^3/\text{s}
 $$
 
-or
+Or
 
 $$
 726.8 \ \text{m}^3/\text{day}
 $$
+
+Even though the total pumping is about the same, the 4-well layout is usually better in practice. This is because the 4-well layout has a more uniform drawdown and gives less extreme stress near one single well. At the same time because each well is spread out the center stays open which can be needed on a construction site and lastly it allows for better redundancy if one well underperforms. On the other hand a single well have a strong pumping point and same total discharge as the 4-well layout, however it has no redundancy as it sits alone.
 
 ### Q9
 Similarly to Q6:
