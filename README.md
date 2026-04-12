@@ -330,7 +330,7 @@ S = 5e-5
 
 t = 86400
 
-"Grid for contour plot"
+#Grid for contour plot
 
 x = np.linspace(-5, 5, 200)
 
@@ -348,18 +348,11 @@ r = np.sqrt(xi**2 + yi**2)
 
 r[r == 0] = 1e-6
 
-
-"Theis parameter"
-
 u = (r**2 * S) / (4 * T * t)
-
-
-"Drawdown"
 
 dd = (Q / (4 * np.pi * T)) * exp1(u)
 
-
-"Plot"
+#Plot
 
 fig, ax = plt.subplots(figsize=(7, 6))
 
@@ -383,7 +376,7 @@ plt.show()
 
 <img width="810" height="684" alt="image" src="https://github.com/user-attachments/assets/b2a9ff89-ced0-429a-a498-f9a7192c63e4" />
 
-###Q8
+### Q8
 
 
 
