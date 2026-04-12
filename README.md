@@ -310,7 +310,7 @@ $Q=0.0084$ m<sup>3</sup>/sec
 
 Each Day: $Q=726.85$ m<sup>3</sup>/day
 
-###Q7
+### Q7
 
 import numpy as np
 
@@ -339,12 +339,12 @@ y = np.linspace(-5, 5, 200)
 xi, yi = np.meshgrid(x, y)
 
 
-"Radial distance from pumping well at (0,0)"
+#Radial distance from pumping well at (0,0)
 
 r = np.sqrt(xi**2 + yi**2)
 
 
-"Avoid r = 0 exactly, because u = 0 gives a singularity"
+#If r = 0 exactly then what happens is that u = 0 gives us a singularity. Therefore we avoid r = 0.
 
 r[r == 0] = 1e-6
 
