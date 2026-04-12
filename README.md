@@ -74,7 +74,7 @@ In Zone 2 (Low $K$): This zone acts as a flow bottleneck. To move the same volum
 This follows the linear general solution $h(x) = c_1x + c_2$ mentioned in Assignment 3, Q2, where the slope $c_1$ is inversely proportional to $K$.
 
 ## b) 
-The specific discharge must be identical ($q_1 = q_2$) due to the Principle of Continuity (Conservation of Mass) for steady-state flow, as shown in your "Groundwater 2" slides (Page 61).Steady-State Requirement: In a steady-state system, the change in storage over time is zero ($\frac{dh}{dt} = 0$). This means the volume of water entering Zone 1 must exactly equal the volume of water leaving Zone 2.Mass Balance: If $q_1$ were greater than $q_2$, water would "pile up" at the interface, causing the head to rise. If $q_1$ were less than $q_2$, a vacuum would form. Since the head is constant in time, the flux must be constant across the entire 1-D path. The equation used: $$K_1 \frac{h_0 - h_{L1}}{L_1} = K_2 \frac{h_{L1} - h_L}{L_2}$$
+The specific discharge must be identical ($q_1 = q_2$) due to the Principle of Continuity (Conservation of Mass) for steady-state flow, as shown in Lecture Groundwater 2 slides (Page 61). According to the steady-state requirement, in a steady-state system, the change in storage over time is zero ($\frac{dh}{dt} = 0$). This means the volume of water entering Zone 1 must exactly equal the volume of water leaving Zone 2. Refereing to the mass balance, if $q_1$ were greater than $q_2$, water would "pile up" at the interface, causing the head to rise. If $q_1$ were less than $q_2$, a vacuum would form. Since the head is constant in time, the flux must be constant across the entire 1-D path. The equation used: $$K_1 \frac{h_0 - h_{L1}}{L_1} = K_2 \frac{h_{L1} - h_L}{L_2}$$
 
 ## Part B
 ### Q1
