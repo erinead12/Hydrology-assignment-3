@@ -378,7 +378,115 @@ plt.show()
 
 ### Q8
 
+Assuming the construction site is centered at (0,0) and the dewatering target is still 8 m of drawdown after 1 day over a site of radius 5 m, the best 4-well layout is a symmetric ring of wells around the site.
 
+Best placement of the 4 wells are to have them equally spaced around the site boundary:
+
+$$
+(5,0),(−5,0),(0,5),(0,−5)
+$$
+
+This is because it gives the site a balanced, symmetric drawdown and each well contributes equally to dewatering the center.
+
+We use superposition. To do that we first multiple the wells, drawdown adds:
+
+$$
+s_{\text{total}}=\sum_{i=1}^{4}\frac{Q_i}{4\pi T}W(u_i)
+$$
+
+At the center of the site, each well is exactly $5\ \text{m}$ away, so each one has the same $u$ as in Q6:
+
+$$
+u=\frac{r^2 S}{4Tt} =\frac{5^2(5\times10^{-5})}{4(0.001)(86400)} \approx 3.6\times10^{-6}
+$$
+
+And
+
+$$
+W(u)\approx 11.95
+$$
+
+If all 4 wells pump equally, with rate $Q_w$, then at the center:
+
+$$
+8=4\left(\frac{Q_w}{4\pi T}W(u)\right)
+$$
+
+Substitute $T = 0.001$ and $W(u) = 11.95$:
+
+$$
+8 = 4\left(\frac{Q_w}{4\pi (0.001)} \cdot 11.95\right)
+$$
+
+Solve for $Q_w$:
+
+$$
+Q_w = \frac{8 \cdot 4\pi (0.001)}{4 \cdot 11.95}
+$$
+
+$$
+Q_w \approx 0.0021 \ \text{m}^3/\text{s}
+$$
+
+Now we can find the pumping rate from each well:
+
+$$
+Q_w \approx 0.0021 \ \text{m}^3/\text{s}
+$$
+
+Per day:
+
+$$
+0.0021 \times 86400 \approx 181.7 \ \text{m}^3/\text{day}
+$$
+
+So each well should pump about:
+
+$$
+181.7 \ \text{m}^3/\text{day per well}
+$$
+
+This means that for the total pumping for the 4-well system we get:
+
+$$
+Q_{\text{total}} = 4Q_w
+$$
+
+$$
+Q_{\text{total}} = 4(0.0021) = 0.0084 \ \text{m}^3/\text{s}
+$$
+
+Therefore we can now summarized our final data points:
+
+For the best placement we have:
+
+$$
+(5,0),\ (-5,0),\ (0,5),\ (0,-5)
+$$
+
+Each indiviual well is required to be pumping:
+
+$$
+Q_w \approx 0.0021 \ \text{m}^3/\text{s}
+$$
+
+or
+
+$$
+181.7 \ \text{m}^3/\text{day per well}
+$$
+
+And lastly the total pumping is:
+
+$$
+0.0084 \ \text{m}^3/\text{s}
+$$
+
+or
+
+$$
+726.8 \ \text{m}^3/\text{day}
+$$
 
 ### Q9
 Similarly to Q6:
